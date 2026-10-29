@@ -25,8 +25,8 @@ Depth First Search (DFS) is a graph traversal algorithm used to visit all vertic
 from collections import defaultdict
 
 def dfs(graph, start, visited, path):
-    visited[start] = True
     path.append(start)
+    visited[start] = True
 
     for neighbour in graph[start]:
         if not visited[neighbour]:
@@ -36,18 +36,24 @@ def dfs(graph, start, visited, path):
 
 graph = defaultdict(list)
 
-n, e = map(int, input().split())
+data = input().split()
+n = int(data[0])
+e = int(data[1])
 
+index = 2
 for i in range(e):
-    u, v = input().split()
+    u = data[index]
+    v = data[index + 1]
     graph[u].append(v)
     graph[v].append(u)
+    index += 2
 
+start = 'A'
 visited = defaultdict(bool)
 path = []
 
-traversedpath = dfs(graph, 'A', visited, path)
-print(traversedpath)
+traversedpath = dfs(graph, start, visited, path)
+print("DFS Traversal Path:", traversedpath)
 ```
 
 ## SAMPLE INPUT
